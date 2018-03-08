@@ -1,0 +1,105 @@
+
+http://www.rgagnon.com/javadetails/java-0014.html
+https://stackoverflow.com/questions/8999075/how-to-compile-run-java-and-c-file-from-java-code
+
+
+most important ::::Steps to compile and execute java code from PHP ( run java in PHP )
+
+http://java2db.com/java-integrations/compile-and-execute-java-code-from-php
+
+https://www.quora.com/How-do-I-implement-an-online-judge-or-autograder-that-both-can-be-completed-in-1%E2%80%932-months-and-that-is-similar-to-CodeChef-TopCoder-etc-from-scratch
+
+
+https://stackoverflow.com/questions/5565838/calling-java-code-from-php
+
+How can I execute a Java program within a php script?
+https://stackoverflow.com/questions/3737031/how-can-i-execute-a-java-program-within-a-php-script
+
+this is for get error stream in java when executing a command:
+
+Link ::  https://stackoverflow.com/questions/14826814/compiling-and-running-c-program-in-java
+
+
+Code for ErrorStream;
+public static String compile()
+        {
+            String log="";
+             try {
+                 String s= null;
+               //change this string to your compilers location
+             Process p = Runtime.getRuntime().exec("cmd /C  \"C:\\MinGW\\bin\\mingw32-gcc-4.6.2.exe\" C:\\MinGW\\bin\\Hello.cpp ");
+
+             BufferedReader stdError = new BufferedReader(new 
+                  InputStreamReader(p.getErrorStream()));
+             boolean error=false;
+
+             log+="\n....\n";
+             while ((s = stdError.readLine()) != null) {
+                 log+=s;
+                 error=true;
+                 log+="\n";
+             }
+             if(error==false) log+="Compilation successful !!!";
+
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+             return log;
+        }
+
+
+this is for get inputstream in java when executing a command:
+
+https://www.mkyong.com/java/how-to-execute-shell-command-from-java/
+Code for InputStream;
+
+package Runtime;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class ExecuteShellComand {
+	public static void main(String[] args) {
+
+		ExecuteShellComand obj = new ExecuteShellComand();
+
+		String domainName = "google.com";
+
+		// in mac oxs
+		//String command = "ping -c 3 " + domainName;
+
+		// in windows
+		String command = "ping -n 3 " + domainName;
+		//String command = "ipconfig";
+		//String command = "gcc -o a a.c";
+
+		String output = obj.executeCommand(command);
+
+		System.out.println(output);
+
+	}
+
+	private String executeCommand(String command) {
+
+		StringBuffer output = new StringBuffer();
+
+		Process p;
+		try {
+			p = Runtime.getRuntime().exec(command);
+			p.waitFor();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+			String line = "";
+			while ((line = reader.readLine()) != null) {
+				output.append(line + "\n");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return output.toString();
+
+	}
+}
+
