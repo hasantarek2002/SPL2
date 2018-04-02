@@ -1,0 +1,7 @@
+out of order execution
+speulative execution    
+any compute, mobile device, cloud
+patches have been created for this but it may slow down the computer performance it is for meltdown
+and for spectre it may need to change hardware architecture.
+branch prediction is guessing that what may execute after this instruction.
+meltdown can access more maemory for a program than it needs that's why it melts the sequirity barrieres and is called meltdown.
