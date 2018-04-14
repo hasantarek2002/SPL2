@@ -1,4 +1,10 @@
-
+<?php
+	session_start();
+    if(!isset($_SESSION['userName']) || (isset($_SESSION['userName']) && $_SESSION['userType'] != 'admin') ){
+	 	$path="../error.php";
+	 	header('location:'.$path);
+	 }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,14 +44,14 @@
           <?php if(isset($_SESSION['userName']) && $_SESSION['userType'] == 'admin') { ?>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contest <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Show Contest</a></li>
-              <li><a href="#">set new contest</a></li>
-              <li><a href="#">Edit contest</a></li>
-              <li><a href="#">Delete contest</a></li>
+              <li><a href="../showContestList/showListOfContestsForAdmin.php">Show Contest</a></li>
+              <li><a href="contestInputPage.php">set new contest</a></li>
+              <li><a href="../modifyContest/modifyContest.php">Edit contest</a></li>
+              <li><a href="../deleteContest/deleteAContest.php">Delete contest</a></li>
             </ul>
           </li>
           <?php } else { ?>
-          <li><a href="#">contests</a></li>
+          <li><a href="../showContestList/showListOfContestsForUser.php">contests</a></li>
           <?php }  ?>
 
 
@@ -61,7 +67,7 @@
         <?php } else { ?>
           <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['userName'] ?></a></li>
-          <li><a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+          <li><a href="../logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
         <?php }  ?>
 
@@ -96,7 +102,7 @@
 	</script>
 
     <div class="container">
-	  <h2>Log in form</h2>
+	  <h2>Contest Input</h2>
 	  <form name="contestForm" action="contestDataInsert.php" onsubmit="return validateContestData()" method="post">
 	    <div class="form-group">
 	      <label for="contest-name">Contest Name:</label>

@@ -1,6 +1,9 @@
 <?php
-// Start the session
-session_start();
+	session_start();
+    if(!isset($_SESSION['userName']) || (isset($_SESSION['userName']) && $_SESSION['userType'] != 'admin') ){
+	 	$path="../error.php";
+	 	header('location:'.$path);
+	 }
 ?>
 
 <?php
@@ -10,7 +13,7 @@ include_once ("../connection.php");
 if(isset($_POST["submit"])) {
 
 	$contestName=$_POST['contestName'];
-	$userName= "admin";
+	$userName= $_SESSION['userName'];
 	$startingTime= $_POST['startingTime'];
 	$duration = $_POST['duration'];
 
