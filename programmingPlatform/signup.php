@@ -7,6 +7,13 @@ if(isset($_REQUEST['signup'])){
     $password=$_REQUEST['password'];
     $recoveryPin=$_REQUEST['recoveryPin'];
     $institute=$_REQUEST['institute'];
+    
+    ///encode
+    $password=base64_encode($password);
+    $recoveryPin=base64_encode($recoveryPin);
+    
+    
+    
 
     $sql = "INSERT INTO users (userName, password, recoveryPin, userType,institute) VALUES('$userName', '$password','$recoveryPin', 'user', '$institute')";
     //$sql= "insert into users (username, password, recoveryPin) values('$username','$password', '$recovery_pin' )";
