@@ -3,18 +3,10 @@
     if(!isset($_SESSION['userName']) || (isset($_SESSION['userName']) && $_SESSION['userType'] != 'user') ){
         $path="../error.php";
 	 	header('location:'.$path);
-	 }
-?>
+    }
 
-<?php  
- include_once ("../connection.php");
- //$userName="shihab";
- //$userName="hasan";
- $sql = "SELECT * FROM submission";
-$result = mysqli_query($conn, $sql);
- 
- ?>  
- <!DOCTYPE html>  
+ ?> 
+<!DOCTYPE html>  
  <html> 
       <head>
       <meta charset="utf-8">
@@ -26,8 +18,10 @@ $result = mysqli_query($conn, $sql);
         <script type="text/javascript" src="../DataTables/datatables.min.js"></script>
 
         <script src="../bootstrap/js/bootstrap.min.js"></script>
+          
+       
 
-        <title>submission list</title>
+      <title>problems List</title>
     </head>
 
       <body> 
@@ -54,17 +48,16 @@ $result = mysqli_query($conn, $sql);
                   <?php if(isset($_SESSION['userName']) && $_SESSION['userType'] == 'admin') { ?>
                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contest <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="../showContestList/showListOfContestsForAdmin.php">Show Contest</a></li>
+                      <li><a href="showListOfContestsForAdmin.php">Show Contest</a></li>
                       <li><a href="../setContest/contestInputPage.php">set new contest</a></li>
                       <li><a href="../modifyContest/modifyContest.php">Edit contest</a></li>
                       <li><a href="../deleteContest/deleteAContest.php">Delete contest</a></li>
                     </ul>
                   </li>
                   <?php } else { ?>
-                  <li><a href="../showContestList/showListOfContestsForUser.php">contests</a></li>
+                  <li><a href="showListOfContestsForUser.php">contests</a></li>
                   <?php }  ?>
-
-
+    
                   <li><a href="#">User Profile</a></li>
                 </ul>
 
@@ -83,53 +76,11 @@ $result = mysqli_query($conn, $sql);
 
             </div>
         </nav>
+           <br /><br />
+          <div class="container">  
+                <h3 align="center">Contest Not Yet Started.</h3> 
+          </div>
           
-          
-          
-           <br /><br />  
-           <div class="container">  
-                <h3 align="center">Submissions</h3>  
-                <br />  
-                <div class="table-responsive">  
-                     <table id="contestData" class="table table-striped table-bordered">  
-                          <thead>  
-                               <tr>  
-                                    <td>Submission ID</td>  
-                                    <td>Problem Name</td>  
-                                    <td>Contest ID</td>  
-                                    <td>User name</td> 
-                                    <td>Compiler</td> 
-                                    <td>Verdict</td> 
-                                    <td>When</td> 
-                               </tr>  
-                          </thead>  
-                          <?php
-                          while($row = mysqli_fetch_array($result))  
-                          {  
-                            $contestId=$row['contestId'];
-                            echo '<tr>
-                                <td>'.$row["submissionId"].'</td>
-                                <td>';
-                            echo "<a href='problemSubmitPage.php?problemId=".$row['problemId']."&contestId=$contestId"."' target='_blank'>".$row['problemName']."</a>".'</td>';
+     </body>
+</html>
 
-                            echo '<td>'.$row["contestId"].'</td>
-                                <td>'.$row["userName"].'</td>
-                                <td>'.$row["compiler"].'</td>
-                                <td>'.$row["verdict"].'</td>
-                                <td>'.$row["timestamp"].'</td></tr>';
-                                
-                            
-                          }  
-                          ?>  
-                     </table>  
-                </div>  
-           </div>  
-      </body>  
- </html>  
- <script>  
- $(document).ready(function(){  
-      $('#contestData').DataTable({
-        "order": [[ 0, "desc" ]]
-        });  
- });  
- </script>  

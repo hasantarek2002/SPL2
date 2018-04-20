@@ -116,6 +116,10 @@ $result = mysqli_query($conn, $sql);
  </html>  
  <script>  
  $(document).ready(function(){  
-      $('#contestData').DataTable();  
+      $('#contestData').DataTable(
+        {
+        "order": [[ 0, "desc" ]]
+        } 
+      );  
  });  
  </script>  

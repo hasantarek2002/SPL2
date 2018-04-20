@@ -3,61 +3,15 @@
     if(!isset($_SESSION['userName']) || (isset($_SESSION['userName']) && $_SESSION['userType'] != 'user') ){
         $path="../error.php";
 	 	header('location:'.$path);
-    }
+	 }
+    include_once ("../connection.php");
+    $contestId=$_SESSION['contestId'];
 
-include_once ("../connection.php");
-$contestId = isset($_GET['contestId'])? $_GET['contestId'] : "";
-///store contest id in a session to show rank used in showRank.php file
-$_SESSION['contestId']=$contestId;
+    $sql="SELECT * FROM participation WHERE contestId='$contestId'";
+    $result = mysqli_query($conn, $sql);
+?>
 
-$sql="SELECT * FROM problem WHERE contestId=$contestId ";
-$result = mysqli_query($conn, $sql);
-
-//this one for timer
-$sql2="select * from contest where contestId=$contestId ";
-$result2 = mysqli_query($conn, $sql2);
-$row2=mysqli_fetch_array($result2,MYSQLI_ASSOC);
-
-$initialTime=$row2['startingTime'];
-$duration = $row2['duration'];
-
-
-$splitDate = explode(":",$duration);
-$hour_to_add = $splitDate[0];
-$minutes_to_add = $splitDate[1];
-$second_to_add = $splitDate[2];
-//echo "hour is ".$splitDate[0].'<br>';
-//echo "minuite  is ".$splitDate[1].'<br>';
-//echo "second is ".$splitDate[2].'<br>';
-$time = new DateTime($initialTime);
-$time->add(new DateInterval('PT' . $hour_to_add . 'H'.$minutes_to_add.'M'.$second_to_add.'S'));
-$endTime = $time->format('Y-m-d H:i:s');
-
-echo "Initial date is ".$initialTime.'<br>';
-echo "duration  is ".$duration.'<br>';
-echo 'end datetime  is '.$endTime.'<br>';
-/*
-$tt=strtotime($endTime);
-echo (date("Y-m-d H:i:s",$tt)) .'<br>';
-*/
-$_SESSION['endTime']=$endTime;
-
-date_default_timezone_set("Asia/Dhaka");
-$startTimeInSecond=strtotime($initialTime);
-$currentTimeInSecond=time();
-$endTimeInSecond=strtotime($endTime);
-
-echo "Initial time(s) is ".$startTimeInSecond.'<br>';
-echo 'current time(s) is '.time().'<br>';
-echo 'end time(s)  is '.$endTimeInSecond.'<br>';
-
-
-if( $currentTimeInSecond < $startTimeInSecond){
-    header('location:contestMessage.php');
-}
-
- ?>  
- <!DOCTYPE html>  
+<!DOCTYPE html>  
  <html> 
       <head>
       <meta charset="utf-8">
@@ -69,10 +23,8 @@ if( $currentTimeInSecond < $startTimeInSecond){
         <script type="text/javascript" src="../DataTables/datatables.min.js"></script>
 
         <script src="../bootstrap/js/bootstrap.min.js"></script>
-          
-       <link rel="stylesheet" type="text/css" href="../css/timer.css">
 
-      <title>problems List</title>
+      <title>Rank</title>
     </head>
 
       <body> 
@@ -104,16 +56,12 @@ if( $currentTimeInSecond < $startTimeInSecond){
                       <li><a href="../modifyContest/modifyContest.php">Edit contest</a></li>
                       <li><a href="../deleteContest/deleteAContest.php">Delete contest</a></li>
                     </ul>
-                      
                   </li>
                   <?php } else { ?>
-                  <li><a href="showListOfContestsForUser.php">contests</a></li>
+                  <li><a href="../showContestList/showListOfContestsForUser.php">contests</a></li>
                   <?php }  ?>
                     
-                    <?php 
-                    if($currentTimeInSecond >= $startTimeInSecond ){ ?>
-                    <li><a href="../submitAndRunCode/showRank.php">Rank</a></li>
-                    <?php }  ?>
+                    <li><a href="showRank.php">Rank</a></li>
                   <li><a href="#">User Profile</a></li>
                 </ul>
 
@@ -134,47 +82,17 @@ if( $currentTimeInSecond < $startTimeInSecond){
         </nav>
            <br /><br /> 
           
-          <p id="demo"></p>
-
-        <script>
-        // Set the date we're counting down to
-        var countDownDate = new Date("<?php echo $_SESSION['endTime'] ?>").getTime();
-
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-            // Get todays date and time
-            var now = new Date().getTime();
-
-            // Find the distance between now an the count down date
-            var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Output the result in an element with id="demo"
-            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
-
-            // If the count down is over, write some text 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "CONTEST FINISHED";
-            }
-        }, 1000);        
-        </script>
-          
-           <div class="container">  
+          <div class="container">  
                 <h3 align="center">problems List</h3>  
                 <br />  
                 <div class="table-responsive">  
-                     <table id="problemData" class="table table-striped table-bordered">  
+                     <table id="rankData" class="table table-striped table-bordered">  
                           <thead>  
                                <tr>  
-                                    <td>Id</td>  
-                                    <td>Name</td>
+                                    <td>Contest ID</td>  
+                                    <td>User Name</td>
+                                   <td>Problem solved</td>
+                                   <td>Timestamp</td>
                                </tr>  
                           </thead>  
                           <?php
@@ -182,11 +100,11 @@ if( $currentTimeInSecond < $startTimeInSecond){
                           {  
 
                             echo '<tr>
-                                <td>'.$row["problemId"].'</td>
-                                <td>';
-                                echo "<a href='../submitAndRunCode/problemSubmitPage.php?problemId=".$row['problemId']."&contestId=$contestId"."' target='_blank'>".$row['problemName']."</a>".'</td></tr>';
-                                
-                            
+                                <td>'.$row["contestId"].'</td>
+                                <td>'.$row["userName"].'</td>
+                                <td>'.$row["numberOfProblemSolved"].'</td>
+                                <td>'.$row["timestamp"].'</td>
+                                </tr>';                   
                           }  
                           ?>  
                      </table>  
@@ -196,6 +114,11 @@ if( $currentTimeInSecond < $startTimeInSecond){
  </html>  
  <script>  
  $(document).ready(function(){  
-      $('#problemData').DataTable();  
+      $('#rankData').DataTable( {
+        "order": [[ 3, "desc" ]]
+        }
+    );  
  });  
  </script>  
+          
+          

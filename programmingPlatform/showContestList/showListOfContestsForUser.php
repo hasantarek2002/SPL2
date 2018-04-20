@@ -60,8 +60,8 @@
                   <?php } else { ?>
                   <li><a href="showListOfContestsForUser.php">contests</a></li>
                   <?php }  ?>
-
-
+                    
+                    
                   <li><a href="#">User Profile</a></li>
                 </ul>
 
@@ -119,6 +119,10 @@
  </html>  
  <script>  
  $(document).ready(function(){  
-      $('#contestData').DataTable();  
+      $('#contestData').DataTable(
+      {
+        "order": [[ 0, "desc" ]]
+        } 
+      );  
  });  
  </script>  
