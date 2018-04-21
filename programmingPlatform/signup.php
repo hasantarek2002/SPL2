@@ -15,8 +15,8 @@
         $row2 = mysqli_fetch_array($result2);
         $rowCount=mysqli_num_rows($result2);
         if($rowCount == 0){
-            $password=base64_encode($password);
-            $recoveryPin=base64_encode($recoveryPin);
+            //$password=base64_encode($password);
+            //$recoveryPin=base64_encode($recoveryPin);
 
             $sql = "INSERT INTO users (userName, password, recoveryPin, userType,institute) VALUES('$userName', '$password','$recoveryPin', 'user', '$institute')";
             //$sql= "insert into users (username, password, recoveryPin) values('$username','$password', '$recovery_pin' )";

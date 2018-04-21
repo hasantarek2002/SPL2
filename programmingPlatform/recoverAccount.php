@@ -114,14 +114,9 @@
         if($rowCount>0){
             $_SESSION['userName']=$_REQUEST['userName'];
             $_SESSION['userType']=$row['userType'];
-            echo "recovery pin is ".$row['recoveryPin'].'<br>';
-            /*
-            if($userType == 'admin'){
-                header('location:adminHomepage.php');
-            }else{
-                header('location:userHomepage.php');
-            } 
-            */
+            //echo "recovery pin is ".$row['recoveryPin'].'<br>';
+            header('location:setPassword.php');
+
         }
         else{
 ?>
