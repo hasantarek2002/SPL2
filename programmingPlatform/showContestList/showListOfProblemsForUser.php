@@ -33,9 +33,9 @@ $time = new DateTime($initialTime);
 $time->add(new DateInterval('PT' . $hour_to_add . 'H'.$minutes_to_add.'M'.$second_to_add.'S'));
 $endTime = $time->format('Y-m-d H:i:s');
 
-echo "Initial date is ".$initialTime.'<br>';
-echo "duration  is ".$duration.'<br>';
-echo 'end datetime  is '.$endTime.'<br>';
+//echo "Initial date is ".$initialTime.'<br>';
+//echo "duration  is ".$duration.'<br>';
+//echo 'end datetime  is '.$endTime.'<br>';
 /*
 $tt=strtotime($endTime);
 echo (date("Y-m-d H:i:s",$tt)) .'<br>';
@@ -47,9 +47,9 @@ $startTimeInSecond=strtotime($initialTime);
 $currentTimeInSecond=time();
 $endTimeInSecond=strtotime($endTime);
 
-echo "Initial time(s) is ".$startTimeInSecond.'<br>';
-echo 'current time(s) is '.time().'<br>';
-echo 'end time(s)  is '.$endTimeInSecond.'<br>';
+//echo "Initial time(s) is ".$startTimeInSecond.'<br>';
+//echo 'current time(s) is '.time().'<br>';
+//echo 'end time(s)  is '.$endTimeInSecond.'<br>';
 
 
 if( $currentTimeInSecond < $startTimeInSecond){

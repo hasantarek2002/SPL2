@@ -1,34 +1,37 @@
 <?php
+    session_start();
+?>
 
-include_once ("connection.php");
+<?php
+    include_once ("connection.php");
+    if(isset($_REQUEST['signup'])){
+        $userName= $_REQUEST['userName'];
+        $password=$_REQUEST['password'];
+        $recoveryPin=$_REQUEST['recoveryPin'];
+        $institute=$_REQUEST['institute'];
 
-if(isset($_REQUEST['signup'])){
-    $userName= $_REQUEST['userName'];
-    $password=$_REQUEST['password'];
-    $recoveryPin=$_REQUEST['recoveryPin'];
-    $institute=$_REQUEST['institute'];
-    
-    ///encode
-    $password=base64_encode($password);
-    $recoveryPin=base64_encode($recoveryPin);
-    
-    
-    
+        $sql2 = "SELECT * FROM users WHERE userName='$userName' ";
+        $result2 = mysqli_query($conn, $sql2);
+        $row2 = mysqli_fetch_array($result2);
+        $rowCount=mysqli_num_rows($result2);
+        if($rowCount == 0){
+            $password=base64_encode($password);
+            $recoveryPin=base64_encode($recoveryPin);
 
-    $sql = "INSERT INTO users (userName, password, recoveryPin, userType,institute) VALUES('$userName', '$password','$recoveryPin', 'user', '$institute')";
-    //$sql= "insert into users (username, password, recoveryPin) values('$username','$password', '$recovery_pin' )";
-    // mysqli_query($db, $sql);
+            $sql = "INSERT INTO users (userName, password, recoveryPin, userType,institute) VALUES('$userName', '$password','$recoveryPin', 'user', '$institute')";
+            //$sql= "insert into users (username, password, recoveryPin) values('$username','$password', '$recovery_pin' )";
+            // mysqli_query($db, $sql);
 
-    if(mysqli_query($conn, $sql)){
-            header('location:login.php');
-    }else{
-        header('location:databaseErrorMessage.php');
+            if(mysqli_query($conn, $sql)){
+                    header('location:login.php');
+            }else{
+                header('location:databaseErrorMessage.php');
+            }
+        }else {
+            $_SESSION['msg']="User name already exist. Please, Try again";
+        }
+           
     }
-
-
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +72,14 @@ if(isset($_REQUEST['signup'])){
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                             <input class="form-control" type="text" id="username" name="userName" placeholder="Username.."  autocomplete="off" required >
-                                            <span id="username-alert" class="text-danger"> </span>
+                                            <span id="username-alert" class="text-danger">
+                                                <?php 
+                                                    if (isset($_SESSION['msg'])) {
+                                                        echo $_SESSION['msg']; 
+                                                    } 
+                                                    unset($_SESSION['msg']); 
+                                                ?> 
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -161,9 +171,6 @@ if(isset($_REQUEST['signup'])){
         </div>
 
         <script type="text/javascript" src="js/signup.js"></script>
+     
     </body>
 </html>
-
-
-
-

@@ -46,11 +46,11 @@
 			$output=shell_exec($out);
 		}
 		
-		echo $output .'<br>'.'first if condition'.'<br>';
+		//echo $output .'<br>'.'first if condition'.'<br>';
 	}
 	else if(!strpos($error,"error"))
 	{
-		echo "<pre>$error</pre>";
+		//echo "<pre>$error</pre>";
 		if(trim($preDefinedInput)=="")
 		{
 			$output=shell_exec($out);
@@ -60,11 +60,11 @@
 			$out=$out." < ".$inputFile;
 			$output=shell_exec($out);
 		}
-		echo $output .'<br>'.'second if condition'.'<br>';
+		//echo $output .'<br>'.'second if condition'.'<br>';
 	}
 	else
 	{
-		echo "<pre>$error</pre>". ' occurs in last else condition (compilation error)';
+		//echo "<pre>$error</pre>". ' occurs in last else condition (compilation error)';
 		$check=1;
 	}
 	
@@ -76,35 +76,35 @@
 	if($check==1)
 	{
 		$verdict="Compilation error";
-		echo "<pre>Compilation error</pre>";
+		//echo "<pre>Compilation error</pre>";
 	}
 	else if($check==0 && $seconds> $timeLimit)
 	{
 		$verdict="Time limit exceed";
-		echo "<pre>Time limit exceed</pre>";
+		//echo "<pre>Time limit exceed</pre>";
 	}
 	else if(trim($output)=="")
 	{
 		$verdict="Run Time Error";
-		echo "<pre>Run Time Error</pre>";
+		//echo "<pre>Run Time Error</pre>";
 	}
 	else if($check==0)
 	{
 		$preDefinedOutput=file_get_contents($solutionFile);
 
-		echo ' preDefinedOutput without trim is '.$preDefinedOutput.'<br>';
-		echo ' Output without trim is '.$output.'<br>'.'<br>'.'<br>';
+		//echo ' preDefinedOutput without trim is '.$preDefinedOutput.'<br>';
+		//echo ' Output without trim is '.$output.'<br>'.'<br>'.'<br>';
 
 		$preDefinedOutput=preg_replace('/\s+/', '', $preDefinedOutput);
 		$output=preg_replace('/\s+/', '', $output);
-		echo ' preDefinedOutput after trim is '.$preDefinedOutput.'<br>';
-		echo ' Output after trim is '.$output.'<br>'.'<br>'.'<br>';
+		//echo ' preDefinedOutput after trim is '.$preDefinedOutput.'<br>';
+		//echo ' Output after trim is '.$output.'<br>'.'<br>'.'<br>';
 		if( $preDefinedOutput == $output ){
 			$verdict="Accepted";
-			echo "<pre>Verdict : AC</pre>";
+			//echo "<pre>Verdict : AC</pre>";
 		}else{
 			$verdict="Wrong Answer";
-			echo "<pre>Verdict : Wrong Answer</pre>";
+			//echo "<pre>Verdict : Wrong Answer</pre>";
 		}
 
 	}
@@ -112,7 +112,7 @@
 	exec("rm *.o");
 	exec("rm *.txt");
 	exec("rm $executable");
-	echo "<pre>Compiled And Executed In: $seconds s</pre>";
+	//echo "<pre>Compiled And Executed In: $seconds s</pre>";
 
 	
 ?>

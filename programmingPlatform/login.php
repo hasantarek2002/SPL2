@@ -1,9 +1,6 @@
 <?php
 	session_start();
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -112,8 +109,7 @@
 
   </body>
 </html>
-<?php
-    
+<?php 
     if(isset($_REQUEST['userName']) && isset($_REQUEST['password'])){
         include_once ("connection.php");
         $userName=$_REQUEST['userName'];
@@ -140,10 +136,6 @@
         document.getElementById("error").innerHTML="user name and password mismatched";
     </script>
 <?php
-
-    //echo "not logged in ";
-            
         }
     }
-
 ?>

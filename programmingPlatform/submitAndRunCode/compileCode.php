@@ -61,9 +61,9 @@
                     $sql4="INSERT INTO participation (contestId, userName) VALUES ('$contestId','$userName') ";
                     
                     if (mysqli_query($conn, $sql4)) {
-                        echo "new rank  record created successfully";
+                        //echo "new rank  record created successfully";
                     } else {
-                        echo "Error: " . $sql4 . "<br>" . mysqli_error($conn);
+                        //echo "Error: " . $sql4 . "<br>" . mysqli_error($conn);
                     }
                 }
                 
@@ -81,9 +81,9 @@
                     
                     $sql6 = "UPDATE participation SET numberOfProblemSolved='$numberOfProblemSolved' WHERE contestId='$contestId' AND userName='$userName'";
                     if (mysqli_query($conn, $sql6)) {
-                        echo "rank  record updated successfully";
+                        //echo "rank  record updated successfully";
                     } else {
-                        echo "Error: " . $sql4 . "<br>" . mysqli_error($conn);
+                        //echo "Error: " . $sql4 . "<br>" . mysqli_error($conn);
                     }
                     
                 }          
