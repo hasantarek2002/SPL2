@@ -62,7 +62,18 @@
                   <?php }  ?>
                     
                     <li><a href="showRank.php">Rank</a></li>
-                  <li><a href="#">User Profile</a></li>
+                    
+                    
+                  <?php if(isset($_SESSION['userName']) && $_SESSION['userType'] == 'user') { ?>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="../profile/showProfile.php">Profile</a></li>
+                          <li><a href="../profile/showSubmissionListForAUser.php">Submissions</a></li>
+                        </ul>
+                      </li>
+                    <?php } else { ?>
+                    <li><a href="../profile/showProfile.php">Profile</a></li>
+                    <?php }  ?>
                 </ul>
 
 
@@ -73,7 +84,7 @@
                 </ul>
                 <?php } else { ?>
                   <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['userName'] ?></a></li>
+                  <li><a href="../profile/showProfile.php"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['userName'] ?></a></li>
                   <li><a href="../logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 </ul>
                 <?php }  ?>

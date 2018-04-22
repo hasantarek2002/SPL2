@@ -142,6 +142,7 @@
       <div class="row">
         <center>copyright &copy; 2018 By Hasan and Shihab </center>
       </div>
+    </div>
 
 </body>
 </html>
