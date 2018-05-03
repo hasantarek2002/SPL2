@@ -132,7 +132,7 @@ if( $currentTimeInSecond < $startTimeInSecond){
                 <?php if(!isset($_SESSION['userName'])) { ?>
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="../signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                  <li><a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                  <li><a href="../index.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
                 <?php } else { ?>
                   <ul class="nav navbar-nav navbar-right">
@@ -195,7 +195,7 @@ if( $currentTimeInSecond < $startTimeInSecond){
                             echo '<tr>
                                 <td>'.$row["problemId"].'</td>
                                 <td>';
-                                echo "<a href='../submitAndRunCode/problemSubmitPage.php?problemId=".$row['problemId']."&contestId=$contestId"."' target='_blank'>".$row['problemName']."</a>".'</td></tr>';
+                                echo "<a href='../submitAndRunCode/problemSubmitPage.php?problemId=".$row['problemId']."&contestId=$contestId"."' target='_self'>".$row['problemName']."</a>".'</td></tr>';
                                 
                             
                           }  

@@ -11,6 +11,7 @@
         
         $userName= $_SESSION['userName'];
         $password=$_REQUEST['password'];
+        $password=md5($password);
         unset($_SESSION['userName']);
         $sql = "UPDATE users SET password='$password' WHERE userName='$userName' ";
         

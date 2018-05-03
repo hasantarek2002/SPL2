@@ -78,7 +78,7 @@
                 <?php if(!isset($_SESSION['userName'])) { ?>
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="../signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                  <li><a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                  <li><a href="../index.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
                 <?php } else { ?>
                   <ul class="nav navbar-nav navbar-right">
@@ -115,7 +115,7 @@
                             echo '<tr>
                                 <td>'.$row["contestId"].'</td>
                                 <td>';
-                                echo "<a href='showListOfProblemsForUser.php?contestId=".$row['contestId']."' target='_blank'>".$row['contestName']."</a>".'</td>';
+                                echo "<a href='showListOfProblemsForUser.php?contestId=".$row['contestId']."' target='_self'>".$row['contestName']."</a>".'</td>';
                                 echo '<td>'.$row["startingTime"].'</td>  
                                     <td>'.$row["duration"].'</td>
                                </tr> ';

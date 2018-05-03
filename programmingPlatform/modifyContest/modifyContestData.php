@@ -21,7 +21,7 @@ $startingTimeFromDatabase=$row2['startingTime'];
 $durationFromDatabase=$row2['duration'];
 
 
-if(isset($_REQUEST["submit"])) {
+if(isset($_REQUEST["modify"])) {
 
 	$contestName=$_POST['contestName'];
 	$userName= $userNameFromDatabase;
@@ -31,7 +31,7 @@ if(isset($_REQUEST["submit"])) {
 
 	//$sql = "INSERT INTO contest (contestName, userName, startingTime, duration) VALUES ('$contestName', '$userName', '$startingTime', '$duration' )";
 
-    $sql = "UPDATE contest SET contestName='$contestName', userName='$userName', startingTime='$startingTime', duration='$duration'  WHERE contestId=$contestId";
+    $sql = "UPDATE contest SET contestName='$contestName', userName='$userName', startingTime='$startingTime', duration='$duration'  WHERE contestId='$contestId'";
     //echo "updated contest name is ".$contestName .'<br>';
     //echo "updated starting time is  ".$startingTime . '<br>';
     //echo "updated duration is  ".$duration . '<br>';

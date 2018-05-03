@@ -17,6 +17,8 @@
         if($rowCount == 0){
             //$password=base64_encode($password);
             //$recoveryPin=base64_encode($recoveryPin);
+            $password=md5($password);
+            $recoveryPin=md5($recoveryPin);
 
             $sql = "INSERT INTO users (userName, password, recoveryPin, userType,institute) VALUES('$userName', '$password','$recoveryPin', 'user', '$institute')";
             //$sql= "insert into users (username, password, recoveryPin) values('$username','$password', '$recovery_pin' )";

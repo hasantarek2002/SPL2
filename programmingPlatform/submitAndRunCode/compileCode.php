@@ -79,7 +79,10 @@
                 if($rowcount2 == 1){
                     $numberOfProblemSolved = $numberOfProblemSolved + 1;
                     
-                    $sql6 = "UPDATE participation SET numberOfProblemSolved='$numberOfProblemSolved' WHERE contestId='$contestId' AND userName='$userName'";
+                    date_default_timezone_set("Asia/Dhaka");
+                    $date = date("Y-m-d H:i:s");
+                    
+                    $sql6 = "UPDATE participation SET numberOfProblemSolved='$numberOfProblemSolved', timestamp='$date' WHERE contestId='$contestId' AND userName='$userName'";
                     if (mysqli_query($conn, $sql6)) {
                         //echo "rank  record updated successfully";
                     } else {

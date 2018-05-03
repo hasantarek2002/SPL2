@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="homepage.css">
+    <link rel="stylesheet" type="text/css" href="css/homepage.css">
 </head>
 
 <body>
@@ -66,7 +66,7 @@
         <?php if(!isset($_SESSION['userName'])) { ?>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a href="index.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
         <?php } else { ?>
           <ul class="nav navbar-nav navbar-right">
@@ -100,6 +100,7 @@
                       <h2>Dr. Mohammad Shoyaib </h2>
               <p>
                 Professor<br>
+                Institute of Information Technology<br>
                 University Of Dhaka
               </p>
                 </div>
@@ -116,8 +117,9 @@
                 <div class="overlay">
                         <h2>MD. Hasan Tarek </h2>
                 <p>
-                  Roll: 818<br>
-                  BSSE 8th Batch
+                  BSSE 8th Batch<br>
+                    Institute of Information Technology<br>
+                    University of Dhaka 
                 </p>
                   </div>
             </div>
@@ -128,8 +130,9 @@
                 <div class="overlay">
                         <h2>Shayakh Shihab Uddin </h2>
                 <p>
-                  Roll: 813<br>
-                  BSSE 8th Batch
+                  BSSE 8th Batch<br>
+                    Institute of Information Technology<br>
+                    University of Dhaka
                 </p>
                   </div>
             </div>

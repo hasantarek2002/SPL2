@@ -20,6 +20,8 @@ $row = mysqli_fetch_array($result);
         $password=$_REQUEST['password'];
         $institute=$_REQUEST['institute'];
         $recoveryPin=$_REQUEST['recoveryPin'];
+        $password=md5($password);
+        $recoveryPin=md5($recoveryPin);
         
         $sql2 = "UPDATE users SET password='$password', recoveryPin='$recoveryPin', institute='$institute' WHERE userName='$userName' ";
         
@@ -109,7 +111,7 @@ $row = mysqli_fetch_array($result);
                 <?php if(!isset($_SESSION['userName'])) { ?>
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="../signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                  <li><a href="../login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                  <li><a href="../index.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
                 <?php } else { ?>
                   <ul class="nav navbar-nav navbar-right">
@@ -158,19 +160,19 @@ $row = mysqli_fetch_array($result);
                               
                               <div class="form-group">
                               <label for="contest-name">Recovery Pin:</label>
-                              <input type="text" class="form-control" name="recoveryPin" value="<?php echo $row['recoveryPin']; ?>" maxlength="50" required>
+                              <input type="text" class="form-control" name="recoveryPin" value="" maxlength="50" required>
                             <span id="recoveryPin-alert" class="text-danger"> </span>
                             </div>
                               
                             <div class="form-group">
                               <label for="contest-name">Password:</label>
-                              <input type="password" class="form-control" name="password" value="<?php echo $row['password']; ?>"  maxlength="50" required>
+                              <input type="password" class="form-control" name="password" value=""  maxlength="50" required>
                             <span id="password-alert" class="text-danger"> </span>
                             </div>
                               
                               <div class="form-group">
                               <label for="contest-name">Retype Password:</label>
-                              <input type="password" class="form-control" name="confirmPassword"  value="<?php echo $row['password']; ?>" maxlength="50" required>
+                              <input type="password" class="form-control" name="confirmPassword"  value="" maxlength="50" required>
                             <span id="confirmPassword-alert" class="text-danger"> </span>
                             </div>
 
