@@ -1,0 +1,67 @@
+
+.carousel-styling{
+	width: 90%; 
+	display: block;
+	margin: auto;
+
+}
+
+.loginFormDesign{
+
+	font-family: cursive;
+	margin-left:70px;
+	padding: 8px;
+	border:1px solid gray;
+	border-radius: 5px;
+	margin-bottom:10px;
+	margin-right:8px;
+	color: #997438;
+	box-shadow: 2px 2px 2px 2px gray;
+    font-weight: bold;
+    max-width:500px;
+
+
+}
+
+.loginLinks{
+	text-align: right;
+}
+
+.judge-name{
+	margin-left: 30px;
+	font-size: 3.5em;
+	font-family: fantasy;
+	color: white;
+	font-weight: bold;
+    padding-top: 20px;
+}
+
+
+.img-center{
+	text-align: center;
+}
+
+.container-text{
+	text-align: center;
+	color: blue;
+	font-size: 3em;
+}
+
+.background-form{
+	background-color: white;
+}
+
+.header{
+	background-color: #440659;
+	height: 100px;
+}
+
+.footer{
+	background-color: #440659;
+	height: 50px;
+	color: black;	
+	text-align: center;
+	vertical-align: center;
+	padding-top: 15px;
+	color: white;
+}

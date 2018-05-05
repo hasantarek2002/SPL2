@@ -25,7 +25,7 @@
             // mysqli_query($db, $sql);
 
             if(mysqli_query($conn, $sql)){
-                    header('location:login.php');
+                    header('location:index.php');
             }else{
                 header('location:databaseErrorMessage.php');
             }
@@ -44,135 +44,130 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="bootstrap/js/jquery.min.js"></script>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/authentication.css">
 
         <script src="bootstrap/js/bootstrap.min.js"></script>
 
     </head>
     <body>
-        
+        <div class="header">
+    <div class="row">
+      <div class="judge-name">
+        Programming Platform 
 
-        <br> <br> <br>
+      </div>
+    </div>
+  </div>
 
+  <br>
+  <br>
+  <br>
+  <br>
+       
+<div class="row">
+<div class="col-sm-1">
+</div>
+<div class="col-sm-9">
+ <center>
+  <div class="form-group">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-2"> </div>
-                <div class="col-sm-8">
+   <div class="loginFormDesign">
+    <h2 style="">Sign Up</h2><br><br>
 
-                    <form name="signupForm" class="form-horizontal" method="post" onsubmit="return userValidation()">
-                        <fieldset>
-                            
-                            <div class="row ">
-                                <div class="col-sm-2"> </div>
-                                <div class="col-sm-8 form-back">
-                                    <div class="row signup-header">
-                                        <center><h2><b>Registration Form</b></h2></center>
-                                    </div>
-                                    <br>
-                                    <div class="form-group">
-                                        <label for="username">Username</label> 
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input class="form-control" type="text" id="username" name="userName" placeholder="Username.."  autocomplete="off" required >
-                                            <span id="username-alert" class="text-danger">
-                                                <?php 
-                                                    if (isset($_SESSION['msg'])) {
-                                                        echo $_SESSION['msg']; 
-                                                    } 
-                                                    unset($_SESSION['msg']); 
-                                                ?> 
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2"> </div>
-                            </div>
+    <form name="signupForm" method="POST" onsubmit="return userValidation()">
 
-                            <div class="row">
-                                <div class="col-sm-2"> </div>
-                                <div class="col-sm-8 form-back"> 
-                                    <div class="form-group">
-                                        <label for="password">Password</label>  
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <input class="form-control" type="password" id="password" name="password" placeholder="Password.." autocomplete="off" required >
-                                            <span id="password-alert" class="text-danger"> </span>
+      <div class="form-group">
+        <label for="username">Username</label> 
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input class="form-control" type="text" id="userName" name="userName" placeholder="Enter Username"  autocomplete="off" required>
+          <span id="username-alert" class="text-danger">
+            <?php 
+            if (isset($_SESSION['msg'])) {
+              echo $_SESSION['msg']; 
+            } 
+            unset($_SESSION['msg']); 
+            ?> 
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2"> </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-2"> </div>
-                                <div class="col-sm-8 form-back"> 
-                                    <div class="form-group">
-                                        <label for="confirmPasswrod">Confirm Password</label>  
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <input class="form-control" type="password" id="confirmPassword" name="confirmPasswrod" placeholder="Confirm Password.." autocomplete="off" required >
-                                            <span id="confirmPassword-alert" class="text-danger"> </span>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2"> </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-sm-2"> </div>
-                                <div class="col-sm-8 form-back"> 
-                                    <div class="form-group">
-                                        <label for="recoveryPin">Recovery Pin</label>  
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <input class="form-control" type="text" id="recoveryPin" name="recoveryPin" placeholder="Recovery pin.." autocomplete="off" required >
-                                            <span id="recoveryPin-alert" class="text-danger"> </span>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2"> </div>
-                            </div>
-
-                            <div class="row ">
-                                <div class="col-sm-2"> </div>
-                                <div class="col-sm-8 form-back">
-                                    
-                                    <div class="form-group">
-                                        <label for="institute">Institute</label> 
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input class="form-control" type="text"  name="institute" placeholder="Institute.."  autocomplete="off" >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2"> </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-sm-5"> </div>
-                                <div class="col-sm-6 form-back"> 
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="submit" class="btn btn-success btn-lg" value="Sign up" name="signup">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-
-                </div>
-                <div class="col-sm-2"> </div>
-
-            </div>
+          </span>
         </div>
+      </div>
 
-        <script type="text/javascript" src="js/signup.js"></script>
+      <div class="form-group">
+        <label for="password">Password</label>  
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          <input class="form-control" type="password" id="password" name="password" placeholder="Enter Password" autocomplete="off" required>
+          <span id="password-alert" class="text-danger"> </span>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Confirm Password</label>  
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" autocomplete="off" required>
+          <span id="confirmPassword-alert" class="text-danger"> </span>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Recovey Pin</label>  
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          <input class="form-control" type="password" id="recoveryPin" name="recoveryPin" placeholder="Enter Recovery Pin" autocomplete="off" required>
+          <span id="recoveryPin-alert" class="text-danger"> </span>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="institute">Institute</label>  
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+          <input class="form-control" type="text" id="institute" name="institute" placeholder="Enter Institute" autocomplete="off">
+          <span id="password-alert" class="text-danger"> </span>
+
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn btn-success" id="signup" name="signup"> Create Account</button><br><br>
+
+      <br>
+
+      <div style="">
+       Already have an account? 
+       <a href="index.php">  Sign In  </a>
+     </div>
+
+
+   </form>
+
+ </div>
+
+
+
+</div>
+</center>
+</div>
+
+<div class="col-sm-2"></div>
+
+</div>
+
+<br><br><br><br>
+
+<div class="footer">
+<div class="row">
+Developed by Shihab & Hasan
+</div>
+</div>
+<script type="text/javascript" src="js/signup.js"></script>
+
+        
      
-    </body>
+</body>
 </html>

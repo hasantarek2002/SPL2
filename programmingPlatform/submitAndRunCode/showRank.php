@@ -1,6 +1,6 @@
 <?php
 	session_start();
-    if(!isset($_SESSION['userName']) || (isset($_SESSION['userName']) && $_SESSION['userType'] != 'user') ){
+    if(!isset($_SESSION['userName']) ){
         $path="../error.php";
 	 	header('location:'.$path);
 	 }
@@ -91,10 +91,10 @@
 
             </div>
         </nav>
-           <br /><br /> 
+           <br /> 
           
           <div class="container">  
-                <h3 align="center">problems List</h3>  
+                <h3 align="center">Rank List</h3>  
                 <br />  
                 <div class="table-responsive">  
                      <table id="rankData" class="table table-striped table-bordered">  

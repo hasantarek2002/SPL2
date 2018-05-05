@@ -15,6 +15,9 @@ function userValidation(){
     if(userName == "" || userName == null){
         document.getElementById("username-alert").innerHTML="Please fill the username field";
         isError=1;
+    }else if(userName.length < 4){
+        document.getElementById("username-alert").innerHTML="user name should be at least 4 charecters";
+        isError=1;  
     }
 
 

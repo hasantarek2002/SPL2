@@ -95,7 +95,7 @@
                 <h3 align="center">Contest modification</h3>  
                 <br />  
                 <div class="table-responsive">  
-                     <table id="problemData" class="table table-striped table-bordered">  
+                     <table id="contestData" class="table table-striped table-bordered">  
                           <thead>  
                                <tr>  
                                     <td>Id</td>  
@@ -125,6 +125,8 @@
  </html>  
  <script>  
  $(document).ready(function(){  
-      $('#problemData').DataTable();  
+      $('#contestData').DataTable({
+        "order": [[ 0, "desc" ]]
+        } );  
  });  
  </script>  

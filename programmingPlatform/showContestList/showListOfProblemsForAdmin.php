@@ -11,14 +11,45 @@
  include_once ("../connection.php");
 $contestId = isset($_GET['contestId'])? $_GET['contestId'] : "";
 
+///store contest id in a session to show rank used in showRank.php file
+$_SESSION['contestId']=$contestId;
+
 $sql="SELECT * FROM problem WHERE contestId=$contestId ";
 $result = mysqli_query($conn, $sql);
+
+//this one for timer
+$sql2="select * from contest where contestId=$contestId ";
+$result2 = mysqli_query($conn, $sql2);
+$row2=mysqli_fetch_array($result2,MYSQLI_ASSOC);
+
+$initialTime=$row2['startingTime'];
+$duration = $row2['duration'];
+
+
+$splitDate = explode(":",$duration);
+$hour_to_add = $splitDate[0];
+$minutes_to_add = $splitDate[1];
+$second_to_add = $splitDate[2];
+//echo "hour is ".$splitDate[0].'<br>';
+//echo "minuite  is ".$splitDate[1].'<br>';
+//echo "second is ".$splitDate[2].'<br>';
+$time = new DateTime($initialTime);
+$time->add(new DateInterval('PT' . $hour_to_add . 'H'.$minutes_to_add.'M'.$second_to_add.'S'));
+$endTime = $time->format('Y-m-d H:i:s');
+
+$_SESSION['endTime']=$endTime;
+
+date_default_timezone_set("Asia/Dhaka");
+$startTimeInSecond=strtotime($initialTime);
+$currentTimeInSecond=time();
+$endTimeInSecond=strtotime($endTime);
+
  
  ?>  
  <!DOCTYPE html>  
  <html> 
       <head>
-      <title>problem input page</title>
+      <title>show problem list</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="../bootstrap/js/jquery.min.js"></script>
@@ -28,6 +59,7 @@ $result = mysqli_query($conn, $sql);
         <script type="text/javascript" src="../DataTables/datatables.min.js"></script>
 
         <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/timer.css">
 
       <title>Problems List</title>
     </head>
@@ -66,6 +98,11 @@ $result = mysqli_query($conn, $sql);
               <?php } else { ?>
               <li><a href="showListOfContestsForUser.php">contests</a></li>
               <?php }  ?>
+                
+                <?php 
+                    if($currentTimeInSecond >= $startTimeInSecond ){ ?>
+                    <li><a href="../submitAndRunCode/showRank.php">Rank</a></li>
+                <?php }  ?>
 
 
               <?php if(isset($_SESSION['userName']) && $_SESSION['userType'] == 'user') { ?>
@@ -97,6 +134,43 @@ $result = mysqli_query($conn, $sql);
         </nav>
           
            <br />
+          <p id="demo"></p>
+
+         <?php
+          if($currentTimeInSecond >= $startTimeInSecond ){ ?> 
+        <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("<?php echo $_SESSION['endTime'] ?>").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "CONTEST FINISHED";
+            }
+        }, 1000);        
+        </script>
+        <?php } ?>
+          
+          
+          
             <div class="container">  
                 <h3 align="center">Problems List</h3>  
                 <br />  

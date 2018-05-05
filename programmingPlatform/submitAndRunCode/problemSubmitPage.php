@@ -12,7 +12,7 @@
 $problemId = isset($_GET['problemId'])? $_GET['problemId'] : "";
 $contestId = isset($_GET['contestId'])? $_GET['contestId'] : "";
 //echo "contest id".$contestId.'<br>';
-$sql="SELECT questionFile FROM problem WHERE problemId=$problemId ";
+$sql="SELECT * FROM problem WHERE problemId=$problemId ";
 $result = mysqli_query($conn, $sql);
 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
  
@@ -42,12 +42,29 @@ $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
           return true;
         } 
       </script>
+    <!--<style>
+        body{
+            background-color: gray;
+            
+        }
+        .navbar {
+        color: red;
+        background-color: darkslateblue;
+        }
+        .dropdown-menu{
+            color: red;
+            background-color: blue;
+        }
+        #language{
+            background-color: lightcyan;
+        }
+    </style>-->
 
       <title>problem submission</title>
     </head>
 
       <body> 
-          <nav class="navbar navbar-inverse ">
+          <nav class="navbar navbar-inverse navbar-fixed-top">
               <div class="container-fluid">
 
                 <?php if(isset($_SESSION['userName']) && $_SESSION['userType'] == 'admin') { ?>  
@@ -108,13 +125,23 @@ $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 
             </div>
         </nav>
-           <br /><br /> 
+           <br /><br />
           
 
-           <div class="container"> 
+           <div class="container">
+            <div class="row">
+                <center>
+                    <h3>Problem name : <?php echo $row['problemName']; ?> </h3>
+                    <h4>Timelimit : <?php echo $row['timeLimit']; ?> second</h4>
+                    <br /> 
+                    
+                </center>
+               
+               
+             </div>
              <div class="row">
                 <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" src='../setContest/viewPDFFileUsingTable.php?id= "<?php echo $problemId; ?>"' height="500" width="1080"></iframe>
+                  <iframe class="embed-responsive-item" src='../setContest/viewPDFFileUsingTable.php?id= "<?php echo $problemId; ?>"' height="400" width="1080"></iframe>
                 </div>
                 
               </div>
@@ -129,15 +156,15 @@ $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
                 </select>
                 </div>
                 <div class="col-sm-10">         
-                  <textarea class="form-control" rows="12" name="code" id="submittedCode" required></textarea>
+                  <textarea class="form-control" rows="12" name="code" id="submittedCode" required>/* Submit your code here */</textarea>
                 </div>
 
               </div>
-
+               <br />
 
               <div class="form-group">        
                 <div class="col-sm-offset-6">
-                  <button type="submit" name="submit" class="btn btn-default">Submit</button>
+                  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                 </div>
               </div>
             </form>

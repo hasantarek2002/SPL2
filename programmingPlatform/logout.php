@@ -19,7 +19,7 @@
 	session_reset();
 	// destroy the session
 	session_destroy();
-	header('location:login.php');
+	header('location:index.php');
 	//echo "All session variables are now removed, and the session is destroyed."
 	
 	?>
