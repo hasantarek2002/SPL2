@@ -49,9 +49,11 @@
               <li><a href="../modifyContest/modifyContest.php">Edit contest</a></li>
               <li><a href="../deleteContest/deleteAContest.php">Delete contest</a></li>
             </ul>
+              <li><a href="../showContestList/showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
           </li>
           <?php } else { ?>
           <li><a href="../showContestList/showListOfContestsForUser.php">contests</a></li>
+          <li><a href="../showContestList/showUpcomingContestListForUser.php">Upcoming Contests</a></li>
           <?php }  ?>
 
 
@@ -92,7 +94,8 @@
 			var duration=document.forms["contestForm"]["duration"].value;
 
 			//var pattern=/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-			var startingTimeRegex= /^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])[\s]([0-9]|0[0-9]|1?[0-9]|2[0-3]):[0-5]?[0-9]:[0-5]?[0-9]$/;;
+			//var startingTimeRegex= /^\d{4}[\-](0?[1-9]|1[012])[\-](0?[1-9]|[12][0-9]|3[01])[\s]([0-9]|0[0-9]|1?[0-9]|2[0-3]):[0-5]?[0-9]:[0-5]?[0-9]$/;;
+           var startingTimeRegex= /^\d{4}[\-](0[1-9]|1[012])[\-](0[1-9]|[12][0-9]|3[01])[\s](0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/; 
 			var durationRegex=/^([0-9]|0[0-9]|1?[0-9]|2[0-3]):[0-5]?[0-9]:[0-5]?[0-9]$/;
 
 			if(!startingTimeRegex.test(startingTime)){

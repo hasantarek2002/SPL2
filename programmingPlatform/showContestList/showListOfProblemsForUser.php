@@ -103,11 +103,12 @@ if( $currentTimeInSecond < $startTimeInSecond){
                       <li><a href="../setContest/contestInputPage.php">set new contest</a></li>
                       <li><a href="../modifyContest/modifyContest.php">Edit contest</a></li>
                       <li><a href="../deleteContest/deleteAContest.php">Delete contest</a></li>
-                    </ul>
-                      
+                    </ul>   
                   </li>
+                    <li><a href="showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
                   <?php } else { ?>
                   <li><a href="showListOfContestsForUser.php">contests</a></li>
+                    <li><a href="showUpcomingContestListForUser.php">Upcoming Contests</a></li>
                   <?php }  ?>
                     
                     <?php 

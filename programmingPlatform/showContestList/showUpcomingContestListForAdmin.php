@@ -8,7 +8,9 @@
 
 <?php  
  include_once ("../connection.php");
- $sql = "SELECT * FROM contest ORDER BY contestId DESC";
+date_default_timezone_set("Asia/Dhaka");
+$date = date("Y-m-d H:i:s");
+ $sql = "SELECT * FROM contest WHERE startingTime>'$date' ORDER BY contestId DESC";
 $result = mysqli_query($conn, $sql);
  
  ?>  
@@ -25,7 +27,7 @@ $result = mysqli_query($conn, $sql);
 
         <script src="../bootstrap/js/bootstrap.min.js"></script>
 
-        <title>Contests</title>
+        <title> Upcoming Contests</title>
     </head>
 
       <body>  
@@ -58,7 +60,7 @@ $result = mysqli_query($conn, $sql);
                   <li><a href="../deleteContest/deleteAContest.php">Delete contest</a></li>
                 </ul>
               </li>
-                <li><a href="showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
+                 <li><a href="showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
               <?php } else { ?>
               <li><a href="showListOfContestsForUser.php">contests</a></li>
                 <li><a href="showUpcomingContestListForUser.php">Upcoming Contests</a></li>

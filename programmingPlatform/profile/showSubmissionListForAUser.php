@@ -59,8 +59,10 @@ $result = mysqli_query($conn, $sql);
                       <li><a href="../deleteContest/deleteAContest.php">Delete contest</a></li>
                     </ul>
                   </li>
+                    <li><a href="../showContestList/showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
                   <?php } else { ?>
                   <li><a href="../showContestList/showListOfContestsForUser.php">contests</a></li>
+                    <li><a href="../showContestList/showUpcomingContestListForUser.php">Upcoming Contests</a></li>
                   <?php }  ?>
 
 
@@ -94,8 +96,7 @@ $result = mysqli_query($conn, $sql);
         </nav>
           
           
-          
-           <br /><br />  
+        <br />  
            <div class="container">  
                 <h3 align="center">Submissions</h3>  
                 <br />  

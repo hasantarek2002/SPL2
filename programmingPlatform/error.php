@@ -40,8 +40,10 @@
               <li><a href="deleteContest/deleteAContest.php">Delete contest</a></li>
             </ul>
           </li>
+            <li><a href="showContestList/showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
           <?php } else { ?>
           <li><a href="showContestList/showListOfContestsForUser.php">contests</a></li>
+            <li><a href="showContestList/showUpcomingContestListForUser.php">Upcoming Contests</a></li>
           <?php }  ?>
 
         <?php if(isset($_SESSION['userName']) && $_SESSION['userType'] == 'user') { ?>

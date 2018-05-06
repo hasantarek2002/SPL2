@@ -57,8 +57,10 @@
                       <li><a href="../deleteContest/deleteAContest.php">Delete contest</a></li>
                     </ul>
                   </li>
+                    <li><a href="showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
                   <?php } else { ?>
                   <li><a href="showListOfContestsForUser.php">contests</a></li>
+                    <li><a href="showUpcomingContestListForUser.php">Upcoming Contests</a></li>
                   <?php }  ?>
                     
                     
@@ -130,7 +132,7 @@
  $(document).ready(function(){  
       $('#contestData').DataTable(
       {
-        "order": [[ 0, "desc" ]]
+        "order": [[ 2, "desc" ]]
         } 
       );  
  });  

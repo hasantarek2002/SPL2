@@ -1,20 +1,23 @@
 <?php
 	session_start();
-    if(!isset($_SESSION['userName']) ){
+    if(!isset($_SESSION['userName']) || (isset($_SESSION['userName']) && $_SESSION['userType'] != 'user') ){
         $path="../error.php";
 	 	header('location:'.$path);
 	 }
-    include_once ("../connection.php");
-    $contestId=$_SESSION['contestId'];
-
-    $sql="SELECT * FROM participation WHERE contestId='$contestId'";
-    $result = mysqli_query($conn, $sql);
 ?>
 
-<!DOCTYPE html>  
+<?php  
+ include_once ("../connection.php");
+
+date_default_timezone_set("Asia/Dhaka");
+$date = date("Y-m-d H:i:s");
+ $sql = "SELECT * FROM contest WHERE startingTime>'$date' ORDER BY contestId DESC";
+ $result = mysqli_query($conn, $sql);
+?>  
+ <!DOCTYPE html>  
  <html> 
       <head>
-      <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="../bootstrap/js/jquery.min.js"></script>
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
@@ -24,7 +27,7 @@
 
         <script src="../bootstrap/js/bootstrap.min.js"></script>
 
-      <title>Rank</title>
+        <title>Upcoming Contests</title>
     </head>
 
       <body> 
@@ -57,13 +60,11 @@
                       <li><a href="../deleteContest/deleteAContest.php">Delete contest</a></li>
                     </ul>
                   </li>
-                    <li><a href="../showContestList/showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
+                    <li><a href="showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
                   <?php } else { ?>
-                  <li><a href="../showContestList/showListOfContestsForUser.php">contests</a></li>
-                    <li><a href="../showContestList/showUpcomingContestListForUser.php">Upcoming Contests</a></li>
+                  <li><a href="showListOfContestsForUser.php">contests</a></li>
+                <li><a href="showUpcomingContestListForUser.php">Upcoming Contests</a></li>
                   <?php }  ?>
-                    
-                    <li><a href="showRank.php">Rank</a></li>
                     
                     
                   <?php if(isset($_SESSION['userName']) && $_SESSION['userType'] == 'user') { ?>
@@ -93,19 +94,23 @@
 
             </div>
         </nav>
-           <br /> 
           
-          <div class="container">  
-                <h3 align="center">Rank List</h3>  
+          
+          
+          
+          
+           <br /><br />  
+           <div class="container"> 
+                <h3 align="center"> Upcoming Contests</h3>  
                 <br />  
                 <div class="table-responsive">  
-                     <table id="rankData" class="table table-striped table-bordered">  
+                     <table id="contestData" class="table table-striped table-bordered">  
                           <thead>  
                                <tr>  
-                                    <td>Contest ID</td>  
-                                    <td>User Name</td>
-                                   <td>Problem solved</td>
-                                   <td>Timestamp</td>
+                                    <td>Id</td>  
+                                    <td>Name</td>  
+                                    <td>Starting time</td>  
+                                    <td>Duration</td> 
                                </tr>  
                           </thead>  
                           <?php
@@ -114,10 +119,11 @@
 
                             echo '<tr>
                                 <td>'.$row["contestId"].'</td>
-                                <td>'.$row["userName"].'</td>
-                                <td>'.$row["numberOfProblemSolved"].'</td>
-                                <td>'.$row["timestamp"].'</td>
-                                </tr>';                   
+                                <td>';
+                                echo "<a href='showListOfProblemsForUser.php?contestId=".$row['contestId']."' target='_self'>".$row['contestName']."</a>".'</td>';
+                                echo '<td>'.$row["startingTime"].'</td>  
+                                    <td>'.$row["duration"].'</td>
+                               </tr> ';
                           }  
                           ?>  
                      </table>  
@@ -127,11 +133,10 @@
  </html>  
  <script>  
  $(document).ready(function(){  
-      $('#rankData').DataTable( {
-        "order": [[ 2, 'desc' ], [ 3, 'asc' ]]
-        }
-    );  
+      $('#contestData').DataTable(
+      {
+        "order": [[ 2, "desc" ]]
+        } 
+      );  
  });  
  </script>  
-          
-          

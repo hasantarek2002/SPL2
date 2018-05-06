@@ -95,8 +95,10 @@ $endTimeInSecond=strtotime($endTime);
                   <li><a href="../deleteContest/deleteAContest.php">Delete contest</a></li>
                 </ul>
               </li>
+                <li><a href="showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
               <?php } else { ?>
               <li><a href="showListOfContestsForUser.php">contests</a></li>
+                <li><a href="showUpcomingContestListForUser.php">Upcoming Contests</a></li>
               <?php }  ?>
                 
                 <?php 

@@ -48,7 +48,7 @@ session_start();
                                     <label for="userName">Username</label> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input class="form-control" type="text" id="userName" name="userName" placeholder="Enter Username"  autocomplete="off"  >
+                                        <input class="form-control" type="text" id="userName" name="userName" placeholder="Enter Username"  autocomplete="off" required >
                                         <span id="username-alert" class="text-danger"> </span>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@ session_start();
                                     <label for="recoveryPin">Recovey pin</label>  
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input class="form-control" type="password" id="recoveryPin" name="recoveryPin" placeholder="Enter Recovey Pin" autocomplete="off" >
+                                        <input class="form-control" type="password" id="recoveryPin" name="recoveryPin" placeholder="Enter Recovey Pin" autocomplete="off" required >
                                         <span id="recoveryPin-alert" class="text-danger"> </span>
 
                                     </div>
