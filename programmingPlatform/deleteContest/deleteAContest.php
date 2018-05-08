@@ -86,23 +86,24 @@
               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contest <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="../showContestList/showListOfContestsForAdmin.php">Show Contest</a></li>
-                  <li><a href="../setContest/contestInputPage.php">set new contest</a></li>
+                  <li><a href="../setContest/contestInputPage.php">Set new contest</a></li>
                   <li><a href="../modifyContest/modifyContest.php">Edit contest</a></li>
                   <li><a href="deleteAContest.php">Delete contest</a></li>
                 </ul>
               </li>
                 <li><a href="../showContestList/showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
               <?php } else { ?>
-              <li><a href="../showContestList/showListOfContestsForUser.php">contests</a></li>
+              <li><a href="../showContestList/showListOfContestsForUser.php">Contests</a></li>
                 <li><a href="../showContestList/showUpcomingContestListForUser.php">Upcoming Contests</a></li>
               <?php }  ?>
 
 
               <?php if(isset($_SESSION['userName']) && $_SESSION['userType'] == 'user') { ?>
+                <li><a href="../submitAndRunCode/showSubmissionList.php">Submissions</a></li>
               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="../profile/showProfile.php">Profile</a></li>
-                  <li><a href="../profile/showSubmissionListForAUser.php">Submissions</a></li>
+                  <li><a href="../profile/showSubmissionListForAUser.php">My Submissions</a></li>
                 </ul>
               </li>
                 <?php } else { ?>

@@ -45,22 +45,23 @@ if(!isset($_SESSION['userName']) || (isset($_SESSION['userName']) && $_SESSION['
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contest <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="showContestList/showListOfContestsForAdmin.php">Show Contest</a></li>
-                            <li><a href="setContest/contestInputPage.php">set new contest</a></li>
+                            <li><a href="setContest/contestInputPage.php">Set new contest</a></li>
                             <li><a href="modifyContest/modifyContest.php">Edit contest</a></li>
                             <li><a href="deleteContest/deleteAContest.php">Delete contest</a></li>
                         </ul>
                     </li>
                     <li><a href="showContestList/showUpcomingContestListForAdmin.php">Upcoming Contests</a></li>
                     <?php } else { ?>
-                    <li><a href="showContestList/showListOfContestsForUser.php">contests</a></li>
+                    <li><a href="showContestList/showListOfContestsForUser.php">Contests</a></li>
                     <li><a href="showContestList/showUpcomingContestListForUser.php">Upcoming Contests</a></li>
                     <?php }  ?>
 
                     <?php if(isset($_SESSION['userName']) && $_SESSION['userType'] == 'user') { ?>
+                    <li><a href="submitAndRunCode/showSubmissionList.php">Submissions</a></li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="profile/showProfile.php">Profile</a></li>
-                            <li><a href="profile/showSubmissionListForAUser.php">Submissions</a></li>
+                            <li><a href="profile/showSubmissionListForAUser.php">My Submissions</a></li>
                         </ul>
                     </li>
                     <?php } else { ?>
@@ -171,8 +172,8 @@ if(!isset($_SESSION['userName']) || (isset($_SESSION['userName']) && $_SESSION['
             
             <ul class="nav nav-pills nav-justified">
                 <li class="active"><a href="#C" data-toggle="tab">C</a></li>
-                <li><a href="#C++" data-toggle="tab">C++</a></li>
-                <li><a href="#Java" data-toggle="tab">JAVA</a></li>
+                <li><a href="#CPP" data-toggle="tab">C++</a></li>
+                <li><a href="#JAVA" data-toggle="tab">JAVA</a></li>
             </ul>
 
             <div class="tab-content">
@@ -180,7 +181,7 @@ if(!isset($_SESSION['userName']) || (isset($_SESSION['userName']) && $_SESSION['
                 <div class="tab-pane fade in active"  id="C">
                     <p class="lang-text">C was originally developed by Dennis Ritchie between 1969 and 1973 at Bell Labs,[6] and used to re-implement the Unix operating system.[7] It has since become one of the most widely used programming languages of all time,[8][9] with C compilers from various vendors available for the majority of existing computer architectures and operating systems. C has been standardized by the American National Standards Institute (ANSI) since 1989 (see ANSI C) and subsequently by the International Organization for Standardization (ISO).</p>
                 </div>
-                <div class="tab-pane fade"  id="C++">
+                <div class="tab-pane fade"  id="CPP">
                     <p class="lang-text">C++ is standardized by the International Organization for Standardization (ISO), with the latest standard version ratified and published by ISO in December 2017 as ISO/IEC 14882:2017 (informally known as C++17).[8] The C++ programming language was initially standardized in 1998 as ISO/IEC 14882:1998, which was then amended by the C++03, C++11 and C++14 standards. The current C++17 standard supersedes these with new features and an enlarged standard library. Before the initial standardization in 1998, C++ was developed by Bjarne Stroustrup at Bell Labs since 1979, as an extension of the C language as he wanted an efficient and flexible language similar to C, which also provided high-level features for program organization. C++20 is the next planned standard thereafter.</p>
                 </div>
                 <div class="tab-pane fade"  id="JAVA">
