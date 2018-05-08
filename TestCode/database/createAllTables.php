@@ -26,6 +26,8 @@ $sql2 ="CREATE TABLE users (
     recoveryPin varchar(50) NOT NULL,
     userType varchar(50) NOT NULL,
     institute varchar(50),
+    userImage varchar(50),
+    fullName varchar(50),
     PRIMARY KEY (userName)
 )";
 if (mysqli_query($conn, $sql2)) {
@@ -33,6 +35,27 @@ if (mysqli_query($conn, $sql2)) {
 } else {
     echo "Error creating table: " . mysqli_error($conn).'<br>';
 }
+
+// create admin table
+$userName='admin';
+$password='1234';
+$recoveryPin='1234';
+$institute='IIT, DU';
+
+$password=md5($password);
+$recoveryPin=md5($recoveryPin);
+
+$sql = "INSERT INTO users (userName, password, recoveryPin, userType,institute) VALUES('$userName', '$password','$recoveryPin', 'admin', '$institute')";
+//$sql= "insert into users (username, password, recoveryPin) values('$username','$password', '$recovery_pin' )";
+// mysqli_query($db, $sql);
+
+if(mysqli_query($conn, $sql)){
+        echo "Admin create with User Name : ".'admin'. ' ,Password : '.'1234'.' And recovery Pin '.'1234'.'<br>';
+}else{
+    echo "Admin account creation failed".'<br>';
+}
+
+
 
 
 //contest table
